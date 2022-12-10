@@ -54,22 +54,16 @@ def display_train(list_trains):
         print("Список пуст")
 
 
-def select(command_a, list_trains):
+def select_1(list_trains, command_a):
     parts = command_a.split(' ', maxsplit=1)
     des = parts[1]
-    count = 0
+    result = []
 
     for train in list_trains:
         if train.get('destination') == des:
-            count += 1
-            print(
-                '{:>4}: {}'.format(count, train.get('destination', '')),
-            )
-            print('Номер поезда: ', train.get('number', '')),
-            print('Время отправления: ', train.get('timer', ''))
+            result.append(train)
 
-    if count == 0:
-        print("Поезд с таким пунктом не найден.")
+    return result
 
 
 def help_1():
@@ -91,7 +85,8 @@ if __name__ == '__main__':
         elif command == "list":
             display_train(trains)
         elif command.startswith('select '):
-            select(command, trains)
+            selected = select_1(trains, command)
+            display_train(selected)
         elif command == "help":
             help_1()
         else:
