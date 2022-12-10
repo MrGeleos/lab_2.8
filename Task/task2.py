@@ -5,20 +5,35 @@ import math
 
 
 def circle(r):
-    return math.pi * r ** 2
+    s = pow((math.pi * r), 2)
+    return s
 
 
 def cylinder():
-    r = float(input("Введите радиус: "))
-    h = float(input("Введите высоту: "))
-    s = 2 * math.pi * r * h
 
-    command = int(input("Вы что вы хотите посчитать? Площадь боковой поверхности цилиндра(1) или полную площадь цилиндра(2)? "))
-    if command == 1:
-        print(s)
+    while True:
+        command = int(
+            input("Вы что вы хотите посчитать?\n"
+                  "Площадь боковой поверхности цилиндра(1)\n"
+                  "Или полную площадь цилиндра(2)?\n"
+                  ">>> "))
+        if (command != 1) & (command != 2):
+            print("Неизвестное значение")
+            break
 
-    elif command == 2:
-        print(s + (circle(r) * 2))
+        r = int(input("Введите радиус: "))
+        h = int(input("Введите высоту: "))
+
+        s = 2 * math.pi * r * h
+
+        if command == 1:
+            s = 2 * math.pi * r * h
+            print(s)
+            break
+        elif command == 2:
+            s = (2 * math.pi * r * h) + (circle(r) * 2)
+            print(s)
+            break
 
 
 if __name__ == '__main__':
