@@ -16,11 +16,11 @@ def get_train(trains):
     }
     trains.append(train)
     if len(trains) > 1:
-        trains.sort(key=lambda item: item.get('time', ''))
+        trains.sort(key=lambda item: item.get('timer', ''))
     return trains
 
 
-def display_train(trains):
+def display_train():
     if trains:
         line = '+-{}-+-{}-+-{}-+-{}-+'.format(
             '-' * 4,
@@ -51,7 +51,7 @@ def display_train(trains):
         print(line)
 
 
-def select(trains):
+def select():
 
     destination1 = input('Введите название пункта: ')
 
@@ -78,7 +78,7 @@ def help_1():
     print("exit - завершить работу с программой.")
 
 
-def main():
+if __name__ == '__main__':
 
     trains = []
 
@@ -88,22 +88,13 @@ def main():
 
         if command == "exit":
             break
-
         elif command == "add":
             trains = get_train(trains)
-
         elif command == "list":
-            display_train(trains)
-
+            display_train()
         elif command.startswith('select'):
-            select(trains)
-
+            select()
         elif command == "help":
             help_1()
-
         else:
             print(f"Неизвестная команда {command}", file=sys.stderr)
-
-
-if __name__ == '__main__':
-    main()
